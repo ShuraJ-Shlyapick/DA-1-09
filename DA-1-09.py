@@ -37,6 +37,10 @@ def sort_dataframe(df, column_name, top_n=10):
     Returns:
         pd.DataFrame: Отсортированный датафрейм.
     """
+    if not isinstance(df, pd.DataFrame):
+        raise TypeError(f"Expected 'df' to be pandad.DataFrame, got {type (df).__name__}")
+    if not isinstance(top_n, int) or top_n <= 0:
+        raise ValueError(f"top_n must be positive integer, got '{top_n!r}' ")
     if column_name not in df.columns:
         raise ValueError(f"Column '{column_name}' is missing from dataframe.")
 
